@@ -2,12 +2,10 @@
  //
  var wsuri;
  if (document.location.origin == "file://") {
-    wsuri = "ws://192.168.146.1:8080/ws";
-    console.log('option 1');
+    wsuri = "ws://127.0.0.1:8080/ws";
  } else {
-    console.log('option 2');
     wsuri = (document.location.protocol === "http:" ? "ws:" : "wss:") + "//" +
-                '192.168.146.1:8080' + "/ws";
+                '127.0.0.1:8080' + "/ws";
  }
 
  // the WAMP connection to the Router
@@ -29,13 +27,13 @@
     console.log("Connected");
 
     // SUBSCRIBE to a topic and receive events
-    //
-    function on_counter (args) {
-       var counter = args[0];
+
+    function on_frame (args) {
+       var frame = args[0];
        //console.log("on_counter() event received with counter " + counter );
-       $('#video').attr('src', counter)
+       $('#video').attr('src', frame)
     }
-    session.subscribe('com.example.oncounter', on_counter).then(
+    session.subscribe('com.example.onframe', on_frame).then(
        function (sub) {
           console.log('subscribed to topic');
        },
@@ -48,8 +46,8 @@
     // PUBLISH an event every second
     //
 
-    session.publish('com.example.onhello', ['Hello from JavaScript (browser)']);
-    console.log("published to topic 'com.example.onhello'");
+    session.publish('com.example.oncreate', ['Hello from JavaScript (browser)']);
+    console.log("published to topic 'com.example.oncreate'");
  };
 
  // fired when connection was lost (or could not be established)

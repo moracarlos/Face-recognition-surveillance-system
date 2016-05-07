@@ -59,16 +59,16 @@
             "components": [
                 {
                     "type": "class",
-                    "classname": "hello.AppSession",
+                    "classname": "main.AppSession",
                     "realm": "realm1",
                     "transport": {
                         "type": "websocket",
                         "endpoint": {
                             "type": "tcp",
-                            "host": "192.168.146.1",
+                            "host": "127.0.0.1",
                             "port": 8080
                         },
-                        "url": "ws://192.168.146.1:8080/ws"
+                        "url": "ws://127.0.0.1:8080/ws"
                     }
                 }
             ]
