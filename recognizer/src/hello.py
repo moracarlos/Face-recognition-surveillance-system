@@ -58,7 +58,7 @@ class AppSession(ApplicationSession):
 
         while True:
             success, image = video.read()
-            image = cv2.resize(image, (400, 300), None, cv2.INTER_CUBIC)
+            image = cv2.resize(image, (320, 240), None, cv2.INTER_CUBIC)
             ret, jpeg = cv2.imencode('.jpg', image)
             
             b64 = base64.encodestring(jpeg)

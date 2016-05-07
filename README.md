@@ -17,3 +17,4 @@ sudo apt-get install python-pip
 pip install crossbar
 
 nodejs
+DEBUG=admin:* npm start //Para correr el administrador con la plantilla generada por express
