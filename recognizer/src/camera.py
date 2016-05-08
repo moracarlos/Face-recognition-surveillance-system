@@ -21,5 +21,5 @@ class Camera(object):
         'Codifica el frame a base64'
         ret, jpeg = cv2.imencode('.jpg', frame)
         b64 = base64.encodestring(jpeg)
-        html = "data:image/jpeg;base64,"+b64
-        return html
+        #html = "data:image/jpeg;base64,"+b64
+        return b64

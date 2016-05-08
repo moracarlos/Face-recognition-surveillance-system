@@ -59,9 +59,8 @@ class AppSession(ApplicationSession):
         while True:
             
             frame = camera.get_frame()
-            frame = recognizer.predict(frame)
-            html = camera.encode_frame(frame)
-            yield self.publish('com.example.onframe', html)
+            recognized = recognizer.predict(frame) #Retorna un array JSON con todos los reconocidos, nombres, confianza y coordenadas
+            yield self.publish('com.example.onframe', recognized)
 
             counter += 1
             yield sleep(0.00033)

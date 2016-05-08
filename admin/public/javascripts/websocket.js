@@ -30,8 +30,9 @@
 
     function on_frame (args) {
        var frame = args[0];
-       //console.log("on_counter() event received with counter " + counter );
-       $('#video').attr('src', frame)
+       var mJSON = JSON.parse(frame);
+       var showImgStr = "data:image/jpeg;base64,"+mJSON.image;
+       $('#video').attr('src', showImgStr)
     }
     session.subscribe('com.example.onframe', on_frame).then(
        function (sub) {
