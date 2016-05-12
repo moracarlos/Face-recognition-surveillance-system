@@ -54,7 +54,7 @@ class AppSession(ApplicationSession):
         # PUBLISH and CALL every second .. forever
         #
         counter = 0
-        camera = Camera()
+        camera = Camera(rpi=True)
         recognizer = Recognizer()
         while True:
             

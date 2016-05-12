@@ -33,6 +33,7 @@
        var mJSON = JSON.parse(frame);
        var showImgStr = "data:image/jpeg;base64,"+mJSON.image;
        $('#video').attr('src', showImgStr)
+       console.log(mJSON.people[0]);
     }
     session.subscribe('com.example.onframe', on_frame).then(
        function (sub) {

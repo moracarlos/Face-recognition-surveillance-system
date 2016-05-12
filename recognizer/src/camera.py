@@ -4,32 +4,31 @@ import base64
 class Camera(object):
     'Hace conexion con la camara, obtiene frames y diferencia entre la camara de la RPi o web'
 
-    def __init__(self, rpi=False):
+    def __init__(self, rpi=True):
         #aca se deberia determinar si estamos en una RPi o una camara web
-        if rpi:
+        self.rpi=rpi
+	if rpi:
             from picamera.array import PiRGBArray
             from picamera import PiCamera
             self.camera = PiCamera()
             self.camera.resolution = (320,240)
-            self.camera.framerate(32)
+            #self.camera.framerate(32)
             self.camera.start_preview
-            self.rawCapture = PiRGBArray(camera, size(320,240))
+            self.rawCapture = PiRGBArray(self.camera, size=(320,240))
         else:
             self.video = cv2.VideoCapture(0)
 
     
     def __del__(self):
-        if rpi:
-            self.camera.stop_preview()
-        else:
-            self.video.release()
+	self.video.release()
 
     def get_frame(self):
         'Obtiene un frame con formato html para ser enviado al browser'
-        if rpi:
-            frame = self.camera.capture(self.rawCapture, format='bgr', use_video_port=True)
-            frame = frame.array
-            return frame
+        if self.rpi:
+            self.camera.capture(self.rawCapture, format='bgr', use_video_port=True)
+            frame = self.rawCapture.array
+            self.rawCapture.truncate(0)	    
+	    return frame
         else:
 
             success, frame = self.video.read()
