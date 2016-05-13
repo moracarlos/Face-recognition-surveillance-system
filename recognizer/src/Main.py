@@ -35,6 +35,7 @@ from autobahn.wamp.exception import ApplicationError
 from camera import Camera
 from recognizer import Recognizer
 import cv2
+from imutils.video import FPS
 
 class AppSession(ApplicationSession):
 
@@ -56,11 +57,13 @@ class AppSession(ApplicationSession):
         counter = 0
         camera = Camera(rpi=True)
         recognizer = Recognizer()
-        while True:
-            
+	fps = FPS().start()
+        while True:            
+            self.log.info("FPS: {msg}", msg=fps.fps())
             frame = camera.get_frame()
             recognized = recognizer.predict(frame) #Retorna un array JSON con todos los reconocidos, nombres, confianza y coordenadas
             yield self.publish('com.example.onframe', recognized)
-
             counter += 1
-            yield sleep(0.00033)
+            #yield sleep(0.00000003)
+	    fps.update()
+
