@@ -1,3 +1,17 @@
+Configurar ip estatica en la Raspberry Pi:
+sudo nano /etc/dhcpcd.conf
+#Al final del archivo
+
+interface eth0
+
+static ip_address=192.168.0.10/24
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1
+
+#End
+
+reboot
+
 Para instalar dependencias:
 
 opencv
