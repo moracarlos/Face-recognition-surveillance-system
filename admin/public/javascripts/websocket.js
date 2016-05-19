@@ -2,10 +2,10 @@
  //
  var wsuri;
  if (document.location.origin == "file://") {
-    wsuri = "ws://127.0.0.1:8080/ws";
+    wsuri = "ws://192.168.0.10:8080/ws";
  } else {
     wsuri = (document.location.protocol === "http:" ? "ws:" : "wss:") + "//" +
-                '127.0.0.1:8080' + "/ws";
+                '192.168.0.10:8080' + "/ws";
  }
 
  // the WAMP connection to the Router
