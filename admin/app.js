@@ -5,14 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var people = require('./routes/people');
-
 var app = express();
 
+var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
+
+require('./passport/passport')(passport); // pass passport for configuration
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/faceRecognizer', function(err){
+  mongoose.connect('mongodb://node_user:node_password@ds051553.mlab.com:51553/facerecognition', function(err){
   if (err){
     console.log('Error connecting to database: '+ err);
   }else{
@@ -32,9 +34,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/people', people);
+//Authentication
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./routes/index')(app, passport);
+require('./routes/users')(app, passport);
+require('./routes/people')(app, passport);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
