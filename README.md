@@ -41,3 +41,9 @@ sudo apt-get install -y nodejs
 pip install imutils
 
 DEBUG=admin:* npm start //Para correr el administrador con la plantilla generada por express
+
+#Crear las llaves
+openssl genrsa -des3 -out server.enc.key 1024
+openssl req -new -key server.enc.key -out server.csr
+openssl rsa -in server.enc.key -out server.key
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
