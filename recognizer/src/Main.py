@@ -55,7 +55,9 @@ class AppSession(ApplicationSession):
         # PUBLISH and CALL every second .. forever
         #
         counter = 0
-        camera = Camera(rpi=True)
+
+        camera = Camera()
+#        camera = Camera(rpi=True)
         recognizer = Recognizer()
 	fps = FPS().start()
         while True:            

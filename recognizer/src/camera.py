@@ -1,13 +1,15 @@
 import cv2
 import base64
+import os
 
 class Camera(object):
     'Hace conexion con la camara, obtiene frames y diferencia entre la camara de la RPi o web'
 
-    def __init__(self, rpi=True):
+    def __init__(self):
         #aca se deberia determinar si estamos en una RPi o una camara web
-        self.rpi=rpi
-	if rpi:
+        self.rpi=os.uname()[1]=='raspberrypi'
+        print self.rpi
+        if self.rpi:
             from picamera.array import PiRGBArray
             from picamera import PiCamera
             self.camera = PiCamera()
