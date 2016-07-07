@@ -1,0 +1,52 @@
+<ht-top-nav></ht-top-nav>
+
+<section id="dashboard-view" class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="today-datas">
+            <li class="blightblue">
+              <div class="pull-left"><i class="fa fa-plane"></i></div>
+              <div class="datas-text pull-right">
+                <span class="bold">{{vm.date}}</span> Caracas, Venezuela
+              </div>
+              <div class="clearfix"></div>
+            </li>
+
+            <li class="borange">
+              <div class="pull-left"><i class="fa fa-envelope"></i></div>
+              <div class="datas-text pull-right">
+                <span class="bold">{{vm.strangerCount}}</span> Extra&ntilde;os
+              </div>
+              <div class="clearfix"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="widget wgreen">
+            <div ht-widget-header title="Cámara" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <img id="video" style="width: 100%;" src='{{imgSrc}}'>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <table-directive
+            people="vm.people"
+            logs="false"
+          >
+          </table-directive>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</section>

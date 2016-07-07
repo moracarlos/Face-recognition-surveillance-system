@@ -1,0 +1,39 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('app.layout')
+    .controller('SidebarController', SidebarController);
+
+  SidebarController.$inject = ['$state', 'routerHelper', '_'];
+  /* @ngInject */
+  function SidebarController($state, routerHelper, _) {
+    var vm = this;
+    var states = routerHelper.getStates();
+    vm.isCurrent = isCurrent;
+
+    activate();
+
+    function activate() { getNavRoutes(); }
+
+    function getNavRoutes() {
+      vm.navRoutes = states.filter(function(r) {
+        return r.settings && r.settings.nav;
+      }).sort(function(r1, r2) {
+        return r1.settings.nav - r2.settings.nav;
+      });
+      vm.navRoutes = _.remove(vm.navRoutes, function(route) {
+        return route.name !== 'login';
+      });
+      console.log(vm.navRoutes);
+    }
+
+    function isCurrent(route) {
+      if (!route.title || !$state.current || !$state.current.title) {
+        return '';
+      }
+      var menuName = route.title;
+      return $state.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
+    }
+  }
+})();

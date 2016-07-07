@@ -1,0 +1,184 @@
+<ht-top-nav></ht-top-nav>
+
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="widget wgreen">
+          <div ht-widget-header title="Imágenes" allow-collapse="true"></div>
+          <div class="col-md-12">
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png" ng-click="vm.takePicture()">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-top: 15px;">
+              <div class="widget-content text-center text-info">
+                <div class="user-pic">
+                  <img class="user-img" src="images/default.png">
+                  <div class="edit-pic">
+                    <img class="edit-user-img" src="images/edit-pen.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="widget-foot">
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="widget wviolet">
+          <div ht-widget-header title="Datos del Usuario"></div>
+
+          <div class="widget-content user" ng-show="!vm.edit">
+            <h3>Nombre:</h3> User1
+            <h3>Username:</h3> User@gmail.com
+            <h3>Password:</h3> *********
+            <p class="submit">
+              <input type="submit" name="commit" value="Editar" ng-click="vm.edit = true">
+            </p>
+          </div>
+
+          <div class="widget-content user" ng-show="vm.edit">
+            <form name="trainForm" novalidate ng-submit="submitted && trainForm.$valid && vm.save()">
+              <h3>Nombre:</h3>
+              <input ng-focus="submitted=false" type="text" name="name" value=""
+                placeholder="Nombre y apellido"
+                ng-model="vm.name" required>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.name.$error.required">
+                  Nombre es requerido.
+                </span>
+              </span>
+
+              <h3>Username:</h3>
+              <input ng-focus="submitted=false" type="text" name="username" value=""
+                placeholder="Username o Email"
+                ng-model="vm.username" required>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.username.$error.required">
+                  Username es requerido.
+                </span>
+              </span>
+
+              <h3>Password:</h3>
+              <input ng-focus="submitted=false" type="text" name="password" value=""
+                placeholder="*******"
+                ng-model="vm.password" required>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.password.$error.required">
+                  Password es requerido.
+                </span>
+              </span>
+
+              <p class="submit">
+                <input type="submit" name="save" value="Guardar" ng-click="submitted=true">
+                <input type="submit" name="cancel" value="Cancelar" ng-click="vm.edit = false">
+              </p>
+            </form>
+          </div>
+
+          <div class="widget-foot">
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</section>

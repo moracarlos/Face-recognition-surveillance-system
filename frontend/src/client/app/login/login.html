@@ -1,0 +1,49 @@
+<section class="container matter">
+  <div class="row">
+    <div class="widget wviolet">
+      <div ht-widget-header title="{{vm.title}}"></div>
+      <div class="widget-content user">
+        <h1>Login to Web App</h1>
+        <section class="container">
+          <div class="login">
+            <form name="loginForm" novalidate ng-submit="submitted && loginForm.$valid && vm.login()">
+              <p>
+                <input ng-focus="submitted=false" type="text" name="username" value="" placeholder="Username or Email"
+                  ng-model="vm.username" required>
+                <span style="color:red">
+                  <span ng-show="submitted &&loginForm.username.$error.required">
+                    Usuario es requerido.
+                  </span>
+                </span>
+              </p>
+              <p>
+                <input type="password" name="password" value="" placeholder="Password"
+                  ng-model="vm.password" required>
+                <span style="color:red">
+                  <span ng-show="submitted && loginForm.password.$error.required">
+                    Contrase&ntilde;a es requerida.
+                  </span>
+                </span>
+              </p>
+              <p class="remember_me">
+                <label>
+                  <input type="checkbox" name="rememberme" id="rememberme" ng-model="vm.rememberme">
+                  Remember me
+                </label>
+              </p>
+              <p class="submit">
+                <input type="submit" name="commit" value="Login" ng-click="submitted=true">
+              </p>
+            </form>
+          </div>
+          <div class="login-help">
+            <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+          </div>
+        </section>
+      </div>
+      <div class="widget-foot">
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</section>

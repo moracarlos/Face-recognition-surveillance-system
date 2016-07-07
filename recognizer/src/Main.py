@@ -1,75 +1,70 @@
-import sys
-sys.path.append('/usr/local/lib/python2.7/site-packages')
+###############################################################################
+#
+# Copyright (C) 2014, Tavendo GmbH and/or collaborators. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice,
+# this list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
+###############################################################################
+
+from twisted.internet.defer import inlineCallbacks
+from twisted.logger import Logger
+
+from autobahn.twisted.util import sleep
+from autobahn.twisted.wamp import ApplicationSession
+from autobahn.wamp.exception import ApplicationError
+from camera import Camera
+from recognizer import Recognizer
 import cv2
-import numpy as np
-from csvmaker import CSVmaker
+from imutils.video import FPS
 
-def read_csv():
-    images = []
-    labels = []
-    fileName = "./assets/faces/faces.csv"
-    with open(fileName) as f:
-        content = f.readlines()
-        for l in content:
-            pair = l.split(';')
-            if pair.__len__() == 2:
-                images.append(cv2.imread(pair[0]))
-                labels.append(int(pair[1]))
-                print pair[0], pair[1]
+class AppSession(ApplicationSession):
 
-    print labels
-    return images, np.array(labels)
-#-----------------------------------------------------------------------------------------------
+    log = Logger()
 
-faceCascade = cv2.CascadeClassifier("./assets/haarcascades/haarcascade_frontalface_alt.xml")
-video_capture = cv2.VideoCapture(0)
+    @inlineCallbacks
+    def onJoin(self, details):
 
-csv = CSVmaker()
-csv.loadFaces()
-images = csv.images
-labels = np.asarray(csv.labels)
+        # SUBSCRIBE to a topic and receive events
+        #
+        def oncreate(msg):
+            self.log.info("event for 'oncreate' received: {msg}", msg=msg)
 
-imgHeight, imgWidth, channels = images[0].shape
-print imgWidth, imgHeight
+        yield self.subscribe(oncreate, 'com.example.oncreate')
+        self.log.info("subscribed to topic 'oncreate'")
 
-imgWidth = 300
-imgHeight = 300
+        # PUBLISH and CALL every second .. forever
+        #
+        counter = 0
 
-for i in range(0, images.__len__()):
-    images[i] = cv2.resize(images[i], (imgWidth, imgHeight), None, cv2.INTER_CUBIC)
-    images[i] = cv2.cvtColor(images[i], cv2.COLOR_BGR2GRAY) #Necesaria
-    #cv2.imshow("vent", images[i])
-    #cv2.waitKey(0)
-
-faceRecognizer = cv2.createFisherFaceRecognizer()
-faceRecognizer.train(images, labels)
-print "trained"
-while True:
-    # Capture frame-by-frame
-    ret, frame = video_capture.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    faces = faceCascade.detectMultiScale(
-        gray,
-        scaleFactor=1.1,
-        minNeighbors=5,
-        minSize=(30, 30),
-        flags=cv2.CASCADE_SCALE_IMAGE
-    )
-
-    # Draw a rectangle around the faces
-    for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        face = gray[y:y+h, x:x+w]
-        faceResized = cv2.resize(face, (imgWidth, imgHeight), None, cv2.INTER_CUBIC) #No se necesita en LBPH
-        prediction, confidence = faceRecognizer.predict(faceResized)
-        print prediction
-    # Display the resulting frame
-    cv2.imshow('Video', faceResized)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-# When everything is done, release the capture
-video_capture.release()
-cv2.destroyAllWindows()
+        camera = Camera()
+#        camera = Camera(rpi=True)
+        recognizer = Recognizer()
+	    fps = FPS().start()
+        while True:
+            self.log.info("FPS: {msg}", msg=fps.fps())
+            frame = camera.get_frame()
+            recognized = recognizer.predict(frame) #Retorna un array JSON con todos los reconocidos, nombres, confianza y coordenadas
+            yield self.publish('com.example.onframe', recognized)
+            counter += 1
+            #yield sleep(0.00000003)
+	    fps.update()

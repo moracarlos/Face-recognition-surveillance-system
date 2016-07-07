@@ -1,0 +1,24 @@
+<div class="widget wviolet">
+  <div ht-widget-header title="Personas" allow-collapse="true"></div>
+  <div class="widget-content text-center text-info">
+    <table class="table table-condensed table-striped">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Name</th>
+          <th>Hora</th>
+          <th ng-show="logs">Confianza</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="p in people">
+          <td style="width: 50%;">{{p.name}}</td>
+          <td>{{p.date}}</td>
+          <td>{{p.confidence}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="widget-foot">
+    <div class="clearfix"></div>
+  </div>
+</div>
