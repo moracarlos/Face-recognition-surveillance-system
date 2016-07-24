@@ -17,10 +17,11 @@
       replace: false,
       terminal: true,
       templateUrl: 'app/widgets/table.html',
-      scope: {
+      bindToController: {
         people: '=',
         logs: '='
       },
+      scope: {},
       controller: TableController,
       controllerAs: 'vm'
     };
@@ -28,7 +29,31 @@
   }
 
   /* @ngInject */
-  function TableController() {
-    //var vm = this;
+  function TableController($scope) {
+    var vm = this;
+    vm.getFaceSquare = getFaceSquare;
+
+    function getFaceSquare(p, index) {
+      /*Face Canvas*/
+      var faceCanvas = document.getElementById('faceCanvas-' + index);
+      var imgCanvas = new Image();
+
+      //console.log(p);
+      imgCanvas.src = p.picture;
+
+      if (faceCanvas != null) {
+        var faceContext = faceCanvas.getContext('2d');
+
+        faceContext.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
+
+        faceContext.beginPath();
+
+        faceContext.drawImage(imgCanvas, p.person.x, p.person.y, p.person.w + 30, p.person.h + 30,
+          0, 0, p.person.w, p.person.h);
+        faceContext.stroke();
+
+        faceContext.closePath();
+      }
+    }
   }
 })();

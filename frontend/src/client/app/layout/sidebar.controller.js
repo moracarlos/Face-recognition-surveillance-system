@@ -25,7 +25,6 @@
       vm.navRoutes = _.remove(vm.navRoutes, function(route) {
         return route.name !== 'login';
       });
-      console.log(vm.navRoutes);
     }
 
     function isCurrent(route) {

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.train')
+    .module('app.add-people')
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -14,16 +14,16 @@
   function getStates() {
     return [
       {
-        state: 'train',
+        state: 'add-people',
         config: {
-          url: '/train',
-          templateUrl: 'app/train/train.html',
-          controller: 'TrainController',
+          url: '/add-people',
+          templateUrl: 'app/add-people/add-people.html',
+          controller: 'AddPeopleController',
           controllerAs: 'vm',
-          title: 'Train',
+          title: 'Add People',
           settings: {
-            nav: 2,
-            content: '<i class="fa fa-lock"></i> Entrenamiento'
+            nav: 5,
+            content: '<i class="fa fa-plus-circle"></i> Agregar Personas'
           }
         }
       }

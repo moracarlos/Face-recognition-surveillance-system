@@ -27,13 +27,17 @@ connection.onopen = function(session, details) {
   console.log('Connected');
 
   // SUBSCRIBE to a topic and receive events
+  var print = true;
 
   function on_frame(args) {
     var frame = args[0];
     var mJSON = JSON.parse(frame);
     var showImgStr = 'data:image/jpeg;base64,' + mJSON.image;
     $('#video').attr('src', showImgStr);
-    console.log(mJSON.people[0]);
+
+    if (print) console.log(mJSON.image);
+
+    print = false;
   }
   session.subscribe('com.example.onframe', on_frame).then(
        function(sub) {

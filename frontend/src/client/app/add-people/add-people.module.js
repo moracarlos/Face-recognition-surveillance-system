@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.train', [
+  angular.module('app.add-people', [
     'app.core',
     'app.widgets'
   ]);

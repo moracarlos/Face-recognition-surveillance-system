@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <ul class="today-datas">
             <li class="blightblue">
-              <div class="pull-left"><i class="fa fa-plane"></i></div>
+              <div class="pull-left"><i class="fa fa-clock-o"></i></div>
               <div class="datas-text pull-right">
                 <span class="bold">{{vm.date}}</span> Caracas, Venezuela
               </div>
@@ -15,9 +15,17 @@
             </li>
 
             <li class="borange">
-              <div class="pull-left"><i class="fa fa-envelope"></i></div>
+              <div class="pull-left"><i class="fa fa-user-secret"></i></div>
               <div class="datas-text pull-right">
                 <span class="bold">{{vm.strangerCount}}</span> Extra&ntilde;os
+              </div>
+              <div class="clearfix"></div>
+            </li>
+
+            <li class="bblue" ng-click="vm.addUser()">
+              <div class="pull-left"><i class="fa fa-plus"></i></div>
+              <div class="datas-text pull-right">
+                <span class="bold">Agregar Usuario</span>
               </div>
               <div class="clearfix"></div>
             </li>
@@ -30,12 +38,16 @@
           <div class="widget wgreen">
             <div ht-widget-header title="Cámara" allow-collapse="true"></div>
             <div class="widget-content text-center text-info">
-              <img id="video" style="width: 100%;" src='{{imgSrc}}'>
+              <!--<img id="video" style="width: 100%;" src='{{vm.imgSrcTest}}'>
+              <span ng-style="vm.style"></span>-->
+              <canvas id="canvas" width="320" height="240" >
             </div>
             <div class="widget-foot">
               <div class="clearfix"></div>
             </div>
           </div>
+
+          <!--<canvas id="faceCanvas" width="300" height="240" >-->
         </div>
 
         <div class="col-md-6">
@@ -46,7 +58,6 @@
           </table-directive>
         </div>
       </div>
-
     </div>
   </section>
 </section>

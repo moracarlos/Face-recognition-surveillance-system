@@ -22,8 +22,8 @@
           controllerAs: 'vm',
           title: 'Logs',
           settings: {
-            nav: 2,
-            content: '<i class="fa fa-lock"></i> Logs'
+            nav: 3,
+            content: '<i class="fa fa-history"></i> Logs'
           }
         }
       }

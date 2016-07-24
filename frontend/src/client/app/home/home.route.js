@@ -22,8 +22,8 @@
           controllerAs: 'vm',
           title: 'Home',
           settings: {
-            nav: 2,
-            content: '<i class="fa fa-lock"></i> Home'
+            nav: 1,
+            content: '<i class="fa fa-home"></i> Home'
           }
         }
       }

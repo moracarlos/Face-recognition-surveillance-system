@@ -4,8 +4,51 @@
   <section class="matter">
     <div class="container">
       <div class="row">
-        <div class="widget wgreen">
-          <div ht-widget-header title="Imágenes" allow-collapse="true"></div>
+        <div class="widget worange">
+          <div ht-widget-header title="Datos de la persona" allow-collapse="true"></div>
+          <div class="widget-content user">
+            <form name="trainForm" novalidate ng-submit="submitted && trainForm.$valid && vm.train()">
+              <h3>Correo Electr&oacute;nico:</h3>
+              <input ng-focus="submitted=false" type="text" name="email" value=""
+                placeholder="email@domain.com"
+                ng-model="vm.email" required>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.email.$error.required">
+                  Correo Electr&oacute;nico es requerido.
+                </span>
+              </span>
+
+              <h3>Nombre:</h3>
+              <input ng-focus="submitted=false" type="text" name="name" value=""
+                placeholder="Nombre"
+                ng-model="vm.name" required>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.name.$error.required">
+                  Nombre es requerido.
+                </span>
+              </span>
+
+              <h3>Apellido:</h3>
+              <input ng-focus="submitted=false" type="text" name="lastName" value=""
+                placeholder="Apellido"
+                ng-model="vm.lastName" required>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.lastName.$error.required">
+                  Apellido es requerido.
+                </span>
+              </span>
+
+              <h3>Escuela:</h3>
+              <select ng-options="item as item.name for item in vm.schools track by item.id"
+                ng-model="vm.school" name="school" required></select>
+              <span style="color:red">
+                <span ng-show="submitted && trainForm.school.$error.required">
+                  Password es requerido.
+                </span>
+              </span>
+            </form>
+          </div>
+
           <div class="col-md-12">
             <div class="col-md-3" style="padding-top: 15px;">
               <div id="img-box" class="widget-content text-center text-info">
@@ -120,48 +163,16 @@
       </div>
 
       <div class="row">
-        <div class="widget wviolet">
-          <div ht-widget-header title="Datos del Usuario"></div>
-
-        <div class="widget-content user">
-          <form name="trainForm" novalidate ng-submit="submitted && trainForm.$valid && vm.train()">
-            <h3>Nombre:</h3>
-            <input ng-focus="submitted=false" type="text" name="name" value=""
-              placeholder="Nombre y apellido"
-              ng-model="vm.name" required>
-            <span style="color:red">
-              <span ng-show="submitted && trainForm.name.$error.required">
-                Nombre es requerido.
-              </span>
-            </span>
-
-            <h3>Username:</h3>
-            <input ng-focus="submitted=false" type="text" name="username" value=""
-              placeholder="Username o Email"
-              ng-model="vm.username" required>
-            <span style="color:red">
-              <span ng-show="submitted && trainForm.username.$error.required">
-                Username es requerido.
-              </span>
-            </span>
-
-            <h3>Password:</h3>
-            <input ng-focus="submitted=false" type="text" name="password" value=""
-              placeholder="*******"
-              ng-model="vm.password" required>
-            <span style="color:red">
-              <span ng-show="submitted && trainForm.password.$error.required">
-                Password es requerido.
-              </span>
-            </span>
-
-            <p class="submit">
-              <input type="submit" name="commit" value="Agregar" ng-click="submitted=true">
-            </p>
-          </form>
-        </div>
+        <ul class="today-datas">
+          <li class="bblue">
+            <div class="pull-left"><i class="fa fa-plus-circle"></i></div>
+            <div class="datas-text pull-right">
+              <span class="bold">Agregar</span>
+            </div>
+            <div class="clearfix"></div>
+          </li>
+        </ul>
       </div>
-
     </div>
   </section>
 </section>

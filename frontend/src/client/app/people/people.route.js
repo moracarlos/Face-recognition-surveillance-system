@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.profile')
+    .module('app.people')
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -14,16 +14,16 @@
   function getStates() {
     return [
       {
-        state: 'profile',
+        state: 'people',
         config: {
-          url: '/profile',
-          templateUrl: 'app/profile/profile.html',
-          controller: 'ProfileController',
+          url: '/people',
+          templateUrl: 'app/people/people.html',
+          controller: 'PeopleController',
           controllerAs: 'vm',
-          title: 'Profile',
+          title: 'People',
           settings: {
-            nav: 2,
-            content: '<i class="fa fa-user"></i> Perfil'
+            nav: 4,
+            content: '<i class="fa fa-users"></i> Personas'
           }
         }
       }

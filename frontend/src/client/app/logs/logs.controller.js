@@ -22,7 +22,8 @@
 
         _.each(vm.frame.people, function(person, index) {
           var object = {
-            name: person.name,
+            picture: $rootScope.imgSrc,
+            person: person,
             date: $filter('date')(vm.personDate, 'dd/MM/yyyy - hh:mm:ss a'),
             confidence: person.confidence
           };
@@ -33,8 +34,6 @@
         if (peopleLength > 20) {
           vm.people = vm.people.slice(peopleLength - 20, peopleLength);
         }
-
-        console.log(vm.people);
       }else {
         console.log('FRAME UNDEFINED');
       }

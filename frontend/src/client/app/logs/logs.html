@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <ul class="today-datas">
             <li class="blightblue">
-              <div class="pull-left"><i class="fa fa-plane"></i></div>
+              <div class="pull-left"><i class="fa fa-clock-o"></i></div>
               <div class="datas-text pull-right">
                 <span class="bold">{{vm.date}}</span> Caracas, Venezuela
               </div>
@@ -15,9 +15,17 @@
             </li>
 
             <li class="borange">
-              <div class="pull-left"><i class="fa fa-envelope"></i></div>
+              <div class="pull-left"><i class="fa fa-user-secret"></i></div>
               <div class="datas-text pull-right">
                 <span class="bold">{{vm.strangerCount}}</span> Extra&ntilde;os
+              </div>
+              <div class="clearfix"></div>
+            </li>
+
+            <li class="bblue">
+              <div class="pull-left"><i class="fa fa-plus"></i></div>
+              <div class="datas-text pull-right">
+                <span class="bold">Agregar Usuario</span>
               </div>
               <div class="clearfix"></div>
             </li>
@@ -33,9 +41,15 @@
           </table-directive>
         </div>
       </div>
-      <p class="submit">
-        <input type="submit" name="commit" value="Descargar" ng-click="">
-      </p>
+      <ul class="today-datas">
+        <li class="bblue">
+          <div class="pull-left"><i class="fa fa-download"></i></div>
+          <div class="datas-text pull-right">
+            <span class="bold">Descargar</span>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+      </ul>
     </div>
   </section>
 </section>

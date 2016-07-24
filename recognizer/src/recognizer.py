@@ -45,7 +45,7 @@ class Recognizer(object):
 		)
 		index = 0
 		for (x,y,w,h) in faces:
-			cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 2)
+			#cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 2)
 			#cv2.putText(frame, fps, (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 			face = gray[y:y+h, x:x+w]
 			faceResized = cv2.resize(face, (self.imgWidth, self.imgHeight), None, cv2.INTER_CUBIC) #No se necesita en LBPH
@@ -67,4 +67,3 @@ class Recognizer(object):
 		b64 = base64.b64encode(jpeg)
 		#html = "data:image/jpeg;base64,"+b64
 		return b64
-

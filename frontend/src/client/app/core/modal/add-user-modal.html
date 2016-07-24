@@ -1,0 +1,76 @@
+<div class="container" style="width: 97%; padding: 5%;">
+  <div class="row">
+    <div class="widget wviolet">
+      <div ht-widget-header title="Datos de la persona" allow-collapse="true"></div>
+      <div class="widget-content user">
+        <form name="trainForm" novalidate ng-submit="submitted && trainForm.$valid && vm.train()">
+          <h3>Correo Electr&oacute;nico:</h3>
+          <input ng-focus="submitted=false" type="text" name="email" value=""
+            placeholder="email@domain.com"
+            ng-model="vm.email" required>
+          <span style="color:red">
+            <span ng-show="submitted && trainForm.email.$error.required">
+              Correo Electr&oacute;nico es requerido.
+            </span>
+          </span>
+
+          <h3>Contrasena</h3>
+          <input ng-focus="submitted=false" type="password" name="password" value=""
+            placeholder="*****************"
+            ng-model="vm.password" required>
+          <span style="color:red">
+            <span ng-show="submitted && trainForm.password.$error.required">
+              Contrasena es requerido.
+            </span>
+          </span>
+
+          <h3>Nombre:</h3>
+          <input ng-focus="submitted=false" type="text" name="name" value=""
+            placeholder="Nombre"
+            ng-model="vm.name" required>
+          <span style="color:red">
+            <span ng-show="submitted && trainForm.name.$error.required">
+              Nombre es requerido.
+            </span>
+          </span>
+
+          <h3>Apellido:</h3>
+          <input ng-focus="submitted=false" type="text" name="lastName" value=""
+            placeholder="Apellido"
+            ng-model="vm.lastName" required>
+          <span style="color:red">
+            <span ng-show="submitted && trainForm.lastName.$error.required">
+              Apellido es requerido.
+            </span>
+          </span>
+
+          <h3>Escuela:</h3>
+          <select ng-options="item as item.name for item in vm.schools track by item.id"
+            ng-model="vm.school" name="school" required></select>
+          <span style="color:red">
+            <span ng-show="submitted && trainForm.school.$error.required">
+              Escuela es requerido.
+            </span>
+          </span>
+
+          <h3>
+            <input ng-focus="submitted=false" type="checkbox" name="role" value="" ng-model="vm.rol"> Administrador
+          </h3>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="today-datas">
+      <li class="bblue">
+        <div class="pull-left"><i class="fa fa-plus-circle"></i></div>
+        <div class="datas-text pull-right">
+          <span class="bold">Agregar Usuario</span>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+  </div>
+
+</div>
