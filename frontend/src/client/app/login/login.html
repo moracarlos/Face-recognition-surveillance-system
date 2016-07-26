@@ -3,41 +3,57 @@
     <div class="widget wviolet">
       <div ht-widget-header title="{{vm.title}}"></div>
       <div class="widget-content user">
-        <h1>Login to Web App</h1>
+        <h1>
+          <div class="pull-left"><i class="fa fa-video-camera"></i></div>
+          Bienvenido al Sistema de Seguridad, Ciencias - UCV
+        </h1>
         <section class="container">
           <div class="login">
-            <form name="loginForm" novalidate ng-submit="submitted && loginForm.$valid && vm.login()">
+            <form name="loginForm" novalidate>
               <p>
-                <input ng-focus="submitted=false" type="text" name="username" value="" placeholder="Username or Email"
+                <input style="width: 48%; margin-left: -4%;"
+                  ng-focus="vm.submitted=false" type="text"
+                  name="username" value="" placeholder="Correo Electrónico"
                   ng-model="vm.username" required>
                 <span style="color:red">
-                  <span ng-show="submitted &&loginForm.username.$error.required">
+                  <span ng-show="vm.submitted && loginForm.username.$error.required">
                     Usuario es requerido.
                   </span>
                 </span>
               </p>
               <p>
-                <input type="password" name="password" value="" placeholder="Password"
+                <input style="width: 48%; margin-left: -4%;"
+                  ng-focus="vm.submitted=false" type="password"
+                  name="password" value="" placeholder="Contraseña"
                   ng-model="vm.password" required>
                 <span style="color:red">
-                  <span ng-show="submitted && loginForm.password.$error.required">
+                  <span ng-show="vm.submitted && loginForm.password.$error.required">
                     Contrase&ntilde;a es requerida.
                   </span>
                 </span>
               </p>
               <p class="remember_me">
-                <label>
+                <label style="margin-left: -4%;">
                   <input type="checkbox" name="rememberme" id="rememberme" ng-model="vm.rememberme">
-                  Remember me
+                  Recuerdame
                 </label>
               </p>
-              <p class="submit">
-                <input type="submit" name="commit" value="Login" ng-click="submitted=true">
-              </p>
             </form>
+
+            <div class="row">
+              <ul class="today-datas">
+                <li class="bblue" ng-click="vm.submitted = true; vm.login(loginForm.$valid)">
+                  <div class="pull-left"><i class="fa fa-sign-in"></i></div>
+                  <div class="datas-text pull-right">
+                    <span class="bold">Ingresar al Sistema</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="login-help">
-            <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+            <p>¿Olvid&oacute; su contrase&ntilde;a? <a ng-click="">Haga click aqu&iacute; para cambiarla</a>.</p>
           </div>
         </section>
       </div>

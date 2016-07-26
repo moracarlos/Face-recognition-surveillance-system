@@ -31,7 +31,9 @@
     "angular-lodash-module": "^1.2.0",
     "angular-websocket": "^2.0.0",
     "angular-wamp": "^0.3.2",
-    "components-font-awesome": "^4.6.3"
+    "components-font-awesome": "^4.6.3",
+    "ngstorage": "^0.3.10",
+    "alertify.js": "^0.3.11"
   },
   "resolutions": {
     "angular": "1.5.3"

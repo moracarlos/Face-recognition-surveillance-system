@@ -9,7 +9,7 @@
   /* @ngInject */
   function ShellController($rootScope, $timeout, config, logger, $state) {
     var vm = this;
-    vm.busyMessage = 'Please wait ...';
+    vm.busyMessage = 'Por favor, espere ...';
     vm.isBusy = true;
     $rootScope.showSplash = true;
     vm.navline = {
