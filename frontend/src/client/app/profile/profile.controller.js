@@ -99,10 +99,15 @@
                   $sessionStorage.Authorization = btoa(vm.username + ':' + vm.password);
                   vm.user = $sessionStorage.user;
                   console.log(response.description);
+
+                  alertify.alert(response.description);
+                }else {
+                  console.log(response);
                 }
               })
               .catch(function(error) {
                 console.log(error);
+                alertify.alert(error);
               });
           } else {
             // user clicked "cancel"

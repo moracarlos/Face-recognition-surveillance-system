@@ -126,8 +126,15 @@
         .catch(fail);
     }
 
-    function addUser(username) {
-      return $http.post(SERVICE_URL + 'users', config)
+    function addUser(params) {
+      //FIX ME --------------------
+      var config = {
+        'headers': {
+          'Authorization': 'Basic ' + $sessionStorage.Authorization //bW9yYWNhcmxvczlAZ21haWwuY29tOjEyMzQ'
+        }
+      };
+
+      return $http.post(SERVICE_URL + 'users', params, config)
         .then(success)
         .catch(fail);
     }

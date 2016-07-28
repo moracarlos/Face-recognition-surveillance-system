@@ -120,7 +120,7 @@
             <div ng-repeat="photo in vm.person.photos" class="col-md-3" style="padding-top: 15px;">
               <div class="widget-content text-center text-info">
                 <div class="user-pic">
-                  <img class="user-img" src="{{photo.photo}}">
+                  <img class="user-img" src="{{'data:image/png;base64,' + photo.photo}}">
                   <div class="edit-pic">
                     <img class="edit-user-img" src="images/edit-pen.png" ng-click="vm.takePicture()">
                   </div>
