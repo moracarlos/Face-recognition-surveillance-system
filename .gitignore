@@ -1,9 +1,11 @@
 /admin/node_modules
 /frontend/node_modules
 /frontend/bower_components
+/frontend/.tmp
 /recognizer/src/camera.pyc
 /recognizer/src/csvmaker.pyc
 /recognizer/src/hello.pyc
 /recognizer/src/main.pyc
 /recognizer/src/recognizer.pyc
+
 
